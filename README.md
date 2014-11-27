@@ -1,4 +1,4 @@
-Sketch Data Parser plugin by Florian Peninon
+Sketch Data Parser plugin by Florian Peninon (fix image pattern for Sketch.app 3.1.1)
 ------
 
 ### Installation
@@ -9,13 +9,13 @@ Download the sketch-data-parser.sketchplugin file and double click it to have Sk
 
 The plugin uses a JSON to populate a list of predefined layers, here is an example :
 
-First, you need to create a group (which will be the model group) with the current naming convention for your editable layers : 
+First, you need to create a group (which will be the model group) with the current naming convention for your editable layers :
 
 ```
 $[name of your data]
 ```
 
-Example : 
+Example :
 
 ![Model group](https://dl.dropboxusercontent.com/u/4822469/groupe-example.png)
 
