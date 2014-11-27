@@ -39,20 +39,18 @@ while (item = [loop nextObject]) {
 						var img = NSImage.alloc().initWithData(get(obj[i][propt]));
 
 						// Apply the image as pattern
-						layerStyle = currentLayer.style().fills().addNewStylePart();
-						layerStyle.fillType = 4;
-						layerStyle.patternImage = imageData;
-						layerStyle.patternFillType = 1;
 						var imageCollection = newGroup.documentData().images();
-						var imageData = imageCollection.addImage_name_convertColourspace(img, layerName + 'img', false);
-						var newImage = MSBitmapLayer.alloc().initWithImage_parentFrame_name(imageData, newGroup.frame(), layerName + 'img');
+						var imageData = imageCollection.addImage_name_convertColourspace(img, '$' + layerName, false);
+						var newImage = MSBitmapLayer.alloc().initWithImage_parentFrame_name(imageData, newGroup.frame(), '$' + layerName);
 						newGroup.addLayer(newImage);
 						var frame = newImage.frame();
-						frame.constrainProportions = false
+						frame.constrainProportions = false;
 						frame.setWidth(currentLayer.frame().width());
 						frame.setHeight(currentLayer.frame().height());
 						frame.setX(currentLayer.frame().x());
 						frame.setY(currentLayer.frame().y());
+
+						deleteLayer(currentLayer);
 
 					} else {
 
@@ -75,4 +73,9 @@ function get(url) {
   var request = NSURLRequest.requestWithURL(NSURL.URLWithString(url));
   var response = NSURLConnection.sendSynchronousRequest_returningResponse_error(request, null, null);
   return response;
+}
+
+function deleteLayer(layer){
+	var parent = [layer parentGroup];
+	if(parent) [parent removeLayer: layer];
 }
